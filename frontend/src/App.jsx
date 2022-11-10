@@ -5,6 +5,45 @@ import styles from "./App.module.css";
 import { Post } from "./components/Post";
 import { Sidebar } from "./components/Sidebar";
 
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl: "https://github.com/evandronosse.png",
+      name: "Evandro Nossé",
+      role: "Web Developer",
+    },
+    content: [
+      { type: "paragraph", content: "Fala galeraa 👋" },
+      {
+        type: "paragraph",
+        content:
+          "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
+      },
+      { type: "link", content: "jane.design/doctorcare" },
+    ],
+    publishedAt: new Date("2022-11-08 20:00:00"),
+  },
+  {
+    id: 2,
+    author: {
+      avatarUrl: "https://github.com/anthonyandrey.png",
+      name: "Anthony Andrey",
+      role: "Web Developer",
+    },
+    content: [
+      { type: "paragraph", content: "Fala pessoal 👋" },
+      {
+        type: "paragraph",
+        content:
+          "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
+      },
+      { type: "link", content: "jane.design/doctorcare" },
+    ],
+    publishedAt: new Date("2022-11-10 20:00:00"),
+  },
+];
+
 function App() {
   return (
     <div>
@@ -12,14 +51,16 @@ function App() {
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          <Post
-            author="Evandro Nossé"
-            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper nulla augue, nec venenatis lectus convallis volutpat. Donec dictum at urna quis tincidunt. Fusce ut turpis a lectus rutrum scelerisque et id ipsum. Donec sed blandit magna, faucibus molestie mi. Nullam velit lorem, semper et hendrerit sit amet, pellentesque eget dolor. Vivamus suscipit eros a mauris pulvinar volutpat. Etiam accumsan mattis elementum. Maecenas vitae velit at ante porttitor pulvinar."
-          />
-          <Post
-            author="Diego Fernandes"
-            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ullamcorper nulla augue, nec venenatis lectus convallis volutpat. Donec dictum at urna quis tincidunt. Fusce ut turpis a lectus rutrum scelerisque et id ipsum. Donec sed blandit magna, faucibus molestie mi. Nullam velit lorem, semper et hendrerit sit amet, pellentesque eget dolor. Vivamus suscipit eros a mauris pulvinar volutpat. Etiam accumsan mattis elementum. Maecenas vitae velit at ante porttitor pulvinar."
-          />
+          {posts.map((post) => {
+            return (
+              <Post
+                key={post.id}
+                author={post.author}
+                content={post.content}
+                publishedAt={post.publishedAt}
+              />
+            );
+          })}
         </main>
       </div>
     </div>
